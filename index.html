@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUEVETV - Infografía Comercial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F4F4F4;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 2 2 / 0.05);
+            text-align: center;
+        }
+        .kpi-number {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #6A994E; 
+        }
+        .flow-step {
+            border: 2px solid #3A6EA5;
+            background-color: #ffffff;
+        }
+        .profile-feature {
+            background-color: #ecfdf5; 
+            color: #065f46; 
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold" style="color: #6A994E;">mueve<span style="color: #000;">TV</span></h1>
+            <p class="font-semibold text-gray-600">TELE EN MOVIMIENTO</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: #3A6EA5;">La Ciudad en Movimiento. Tu Marca en Pantalla.</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">MUEVETV es la red de comunicación que conecta tu marca con miles de personas cada día, directamente en el corazón del tránsito urbano de Aguascalientes. Descubre el poder de una audiencia activa y cautiva.</p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-center">
+            <div class="stat-card">
+                <div class="text-6xl mb-2">🚍</div>
+                <p class="kpi-number">185,000+</p>
+                <p class="text-gray-500 font-semibold">Viajes Diarios en Transporte Público</p>
+            </div>
+            <div class="stat-card bg-green-100 border-2 border-green-500">
+                <div class="text-6xl mb-2">👥</div>
+                <p class="kpi-number">3.6M+</p>
+                <p class="text-gray-500 font-semibold">Impactos Mensuales Estimados</p>
+            </div>
+            <div class="stat-card">
+                <div class="text-6xl mb-2">⏱️</div>
+                <p class="kpi-number">30</p>
+                <p class="text-gray-500 font-semibold">Minutos de Exposición Promedio</p>
+            </div>
+        </section>
+
+        <section id="audience" class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-2">Conectando con Consumidores Reales</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Nuestra audiencia no solo ve el anuncio, viaja con él. Son profesionales, familias y consumidores activos con poder de decisión diario.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-xl mb-4 text-center">Distribución Demográfica Clave</h4>
+                    <p class="text-sm text-center text-gray-500 mb-4">El 54% de nuestros usuarios son adultos (25–44 años), el segmento de mayor consumo.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="ageBarChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-xl mb-4 text-center">Distribución de Género</h4>
+                    <p class="text-sm text-center text-gray-500 mb-4">Un mercado balanceado y diverso (51% Mujeres / 49% Hombres) en niveles C y C+.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="genderDonutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="profile" class="mb-16 bg-gray-100 p-8 rounded-xl shadow-inner">
+            <h3 class="text-3xl font-bold text-center mb-6" style="color: #3A6EA5;">Perfil Sociocultural del Viajero</h3>
+            <p class="text-center text-gray-700 mb-8 max-w-4xl mx-auto">El público de MUEVETV no "pasa por el medio", **viaja con él**. Esto genera una audiencia cautiva con las siguientes características de consumo:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="profile-feature">
+                    <span class="text-2xl">🛍️</span>
+                    <p>Consumidores con **Decisión de Compra Diaria**.</p>
+                </div>
+                <div class="profile-feature">
+                    <span class="text-2xl">👔</span>
+                    <p>**Profesionales, emprendedores** y empleados de comercio/industria.</p>
+                </div>
+                <div class="profile-feature">
+                    <span class="text-2xl">👨‍👩‍👧‍👦</span>
+                    <p>**Familias jóvenes**, conectadas y estables.</p>
+                </div>
+                <div class="profile-feature">
+                    <span class="text-2xl">🔄</span>
+                    <p>Combinan **tradición y modernidad** (cultura local y digital).</p>
+                </div>
+                <div class="profile-feature">
+                    <span class="text-2xl">🌐</span>
+                    <p>**Activos en redes** y con altos hábitos de movilidad.</p>
+                </div>
+                <div class="profile-feature bg-indigo-100 text-indigo-800">
+                    <span class="text-2xl">🚌</span>
+                    <p>Alta frecuencia: la marca viaja **dos veces al día** con el consumidor.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="platform" class="mb-16">
+             <h3 class="text-3xl font-bold text-center mb-2">Una Plataforma de Alcance Masivo</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Con una infraestructura robusta, MUEVETV garantiza una cobertura amplia y constante en las rutas más importantes de la ciudad.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center mb-8">
+                 <div class="stat-card p-4">
+                    <span class="text-5xl">🚌</span>
+                    <p class="text-3xl font-bold mt-2">100</p>
+                    <p class="text-gray-500">Unidades Activas</p>
+                </div>
+                <div class="stat-card p-4">
+                    <span class="text-5xl">📺</span>
+                    <p class="text-3xl font-bold mt-2">200</p>
+                    <p class="text-gray-500">Pantallas Digitales</p>
+                </div>
+                <div class="stat-card p-4">
+                    <span class="text-5xl">🗺️</span>
+                    <p class="text-3xl font-bold mt-2">10</p>
+                    <p class="text-gray-500">Rutas Principales</p>
+                </div>
+                 <div class="stat-card p-4">
+                    <span class="text-5xl">🎯</span>
+                    <p class="text-3xl font-bold mt-2">65%</p>
+                    <p class="text-gray-500">De Usuarios Cubiertos</p>
+                </div>
+            </div>
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h4 class="font-bold text-xl mb-4 text-center">Impacto Total del Ecosistema (Mensual)</h4>
+                <p class="text-sm text-center text-gray-500 mb-4">Combinamos los impactos directos en pantalla con una potente amplificación digital para maximizar el alcance (físico + digital).</p>
+                <div class="chart-container h-80">
+                    <canvas id="reachComparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy" class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-2">Estrategia de Comunicación Integral</h3>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Ofrecemos un ecosistema de cuatro niveles que asegura que tu mensaje no solo se vea, sino que se recuerde y genere acción.</p>
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 border-t-4 border-dashed" style="border-color: #3A6EA5; transform: translateY(-50%);"></div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <div class="flow-step p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-4xl mb-3">🖥️</div>
+                        <h5 class="font-bold text-lg">1. Pantallas Dinámicas</h5>
+                        <p class="text-sm text-gray-600">Spots audiovisuales segmentados por ruta, hora o público.</p>
+                    </div>
+                     <div class="flow-step p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-4xl mb-3">📄</div>
+                        <h5 class="font-bold text-lg">2. Dovelas Físicas</h5>
+                        <p class="text-sm text-gray-600">Refuerzo tangible y contacto directo con 400 espacios visuales.</p>
+                    </div>
+                     <div class="flow-step p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-4xl mb-3">📰</div>
+                        <h5 class="font-bold text-lg">3. Contenido de Valor</h5>
+                        <p class="text-sm text-gray-600">Integración de marca en noticias útiles y entretenimiento.</p>
+                    </div>
+                     <div class="flow-step p-6 rounded-lg shadow-lg text-center">
+                        <div class="text-4xl mb-3">📱</div>
+                        <h5 class="font-bold text-lg">4. Extensión Digital</h5>
+                        <p class="text-sm text-gray-600">Amplificación en redes y activaciones con códigos QR.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center pt-8 border-t border-gray-300">
+             <h3 class="text-3xl font-bold mb-4" style="color: #6A994E;">¡Conecta tu marca con la ciudad en movimiento!</h3>
+             <p class="text-gray-600 mb-6">Tu marca no se queda quieta. Se mueve con la gente, se ve, se escucha y se recuerda.</p>
+             <div class="flex justify-center items-center space-x-6">
+                <p class="font-semibold">📱 449 229 0772 (WhatsApp)</p>
+                <p class="font-semibold">f @Muevetv</p>
+                <p class="font-semibold">📷 @Muevetvags</p>
+             </div>
+        </footer>
+    </main>
+
+    <script>
+        const freshAndBright = {
+            green: '#6A994E',
+            blue: '#3A6EA5',
+            darkBlue: '#204E75',
+            red: '#A33B20',
+            lightGray: '#F4F4F4',
+            darkGray: '#333333'
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: freshAndBright.darkGray,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Inter', sans-serif"
+                    },
+                    titleFont: {
+                        family: "'Inter', sans-serif"
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: freshAndBright.darkGray },
+                    grid: { color: '#E0E0E0' }
+                },
+                x: {
+                    ticks: { color: freshAndBright.darkGray },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const genderData = {
+            labels: ['Mujeres', 'Hombres'],
+            datasets: [{
+                label: 'Distribución de Género',
+                data: [51, 49],
+                backgroundColor: [freshAndBright.green, freshAndBright.blue],
+                borderColor: freshAndBright.lightGray,
+                borderWidth: 2
+            }]
+        };
+        new Chart(document.getElementById('genderDonutChart'), {
+            type: 'doughnut',
+            data: genderData,
+            options: { ...defaultChartOptions, scales: { y: { display: false }, x: { display: false } } }
+        });
+
+        const ageData = {
+            labels: ['18-24', '25-44', '45-54', '55+'],
+            datasets: [{
+                label: 'Porcentaje de Usuarios',
+                data: [20, 54, 18, 8],
+                backgroundColor: [freshAndBright.darkBlue, freshAndBright.green, freshAndBright.blue, freshAndBright.red],
+                borderRadius: 5
+            }]
+        };
+        new Chart(document.getElementById('ageBarChart'), {
+            type: 'bar',
+            data: ageData,
+            options: { ...defaultChartOptions, plugins: { ...defaultChartOptions.plugins, legend: { display: false } } }
+        });
+        
+        const reachData = {
+            labels: [wrapLabel('Impactos en Pantallas'), wrapLabel('Alcance Digital Total')],
+            datasets: [{
+                label: 'Impactos Mensuales',
+                data: [3600000, 4900000],
+                backgroundColor: [freshAndBright.blue, freshAndBright.green],
+                barThickness: 60,
+                borderRadius: 5
+            }]
+        };
+        new Chart(document.getElementById('reachComparisonChart'), {
+            type: 'bar',
+            data: reachData,
+            options: { 
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        display: false
+                    }
+                },
+                 scales: {
+                    x: {
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return (value / 1000000) + 'M';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
